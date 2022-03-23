@@ -8,7 +8,7 @@ Because this app uses GitHub logins, set up your app in GitHub:
 2. Select Developer settings from the sidebar
 3. Then click on OAuth Apps and then on Register new application
 4. Enter Application Name and Homepage URL
-5. For Authorization Callback URL: http://localhost:8080/auth/github/callback
+5. For Authorization Callback URL: `http://localhost:[PORT]/auth/github/callback`
 6. Click Register application
 7. Copy and paste Client ID and Client Secret keys into .env file
 
