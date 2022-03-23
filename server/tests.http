@@ -1,0 +1,8 @@
+
+
+
+# NOTE:
+# Because we are not running this API from the browser, the express server will
+# never see req.user which means it will never return isCurrentUser. But still
+# this is useful just to see if the API is working.
+GET http://localhost:5050/api/v1/posts
