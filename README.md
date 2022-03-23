@@ -31,14 +31,28 @@ npm run dev
 
 ## Server Endpoints
 
-| Endpoint URL                    | Action | Description                                                                                |
-| ------------------------------- | :----: | ------------------------------------------------------------------------------------------ |
-| `/auth/github`                  |  GET   | WebApp calls this to start the GitHub login process                                        |
-| `/auth/github/callback`         |  GET   | The "auth callback URL" value from your app page on github.com, ALSO inside `/server/.env` |
-| `/auth/github/success-callback` |  GET   | A "sanity check" only used when we test GitHub server, in `/server/.env`                   |
-| `/auth/github/profile`          |  GET   | Used by React app to get profile. GitHub auth required; checks req.user for login          |
-| `/api/v1/posts/`                |  GET   | Gets all posts. Adds `isCurrentUser` if the user is logged in (via session)                |
-| `/api/v1/posts/`                |  POST  | Create a new post, requires GitHub login                                                   |
+| Endpoint URL             | Action | Description                                                                                |
+| ------------------------ | :----: | ------------------------------------------------------------------------------------------ |
+| `/auth/github`           |  GET   | WebApp calls this to start the GitHub login process                                        |
+| `/auth/github/callback`  |  GET   | The "auth callback URL" value from your app page on github.com, ALSO inside `/server/.env` |
+| `/auth/profile`          |  GET   | Used by React app to get profile. GitHub auth required; checks req.user for login          |
+| `/auth/logout`           |  GET   | Used by React app directly. Call passport's logout, ends session, and redirects to React   |
+| `/auth/success-callback` |  GET   | A "sanity check" only used when we test GitHub server, in `/server/.env`                   |
+| `/api/v1/posts/`         |  GET   | Gets all posts. Adds `isCurrentUser` if the user is logged in (via session)                |
+| `/api/v1/posts/`         |  POST  | Create a new post, requires GitHub login                                                   |
+
+## The Workflow
+
+- USER clicks on the link to a URL hosted on the SERVER.(1)
+- The SERVER redirects the user to a link to the PROVIDER. (2)
+- USER accepts the permission
+- PROVIDER redirects to a callback URL on the SERVER
+- SERVER will authenticate using passport. If all goes well, we'll get the provider's info of the user.
+- the SERVER will map that provider info to a user on the database, or create a new user.
+- If all goes well SERVER then redirects to the CLIENT's home page or a failure page depending on the circumstances.
+
+(1) This is different from what we have usually done; up until now, any URL we've it on the server has returned JSON. That's why there's no `/api` in front of it.
+(2) This is the modal box where they ask the user if they agree.
 
 ## References
 
@@ -47,3 +61,12 @@ npm run dev
 https://flaviocopes.com/express-sessions/
 https://andyj.github.io/projects/node-session-management.html
 https://cesare.substack.com/p/how-to-save-user-sessions-in-the?s=r - may be good if we want to implment connect-session-knex library
+
+### OAuth
+
+https://developer.okta.com/blog/2017/06/21/what-the-heck-is-oauth
+https://developer.okta.com/blog/2019/01/23/nobody-cares-about-oauth-or-openid-connect - trolly but has good explanations
+
+### Other implementations
+
+https://github.com/oktadev/okta-express-react-example/blob/master/index.js
