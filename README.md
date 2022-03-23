@@ -2,7 +2,20 @@
 
 ## Installation
 
+Because this app uses GitHub logins, set up your app in GitHub:
+
+1. Go to Account Settings
+2. Select Developer settings from the sidebar
+3. Then click on OAuth Apps and then on Register new application
+4. Enter Application Name and Homepage URL
+5. For Authorization Callback URL: http://localhost:8080/auth/github/callback
+6. Click Register application
+7. Copy and paste Client ID and Client Secret keys into .env file
+
+[(instruction credits)](https://github.com/sahat/hackathon-starter)
+
 ```bash
+# Do this separate in both /client and /server folders
 npm install
 npm run dev
 ```
@@ -58,15 +71,16 @@ npm run dev
 
 ### Sessions
 
-https://flaviocopes.com/express-sessions/
-https://andyj.github.io/projects/node-session-management.html
-https://cesare.substack.com/p/how-to-save-user-sessions-in-the?s=r - may be good if we want to implment connect-session-knex library
+- https://flaviocopes.com/express-sessions/
+- https://andyj.github.io/projects/node-session-management.html
+- https://cesare.substack.com/p/how-to-save-user-sessions-in-the?s=r - may be good if we want to implment connect-session-knex library
 
 ### OAuth
 
-https://developer.okta.com/blog/2017/06/21/what-the-heck-is-oauth
-https://developer.okta.com/blog/2019/01/23/nobody-cares-about-oauth-or-openid-connect - trolly but has good explanations
+- https://developer.okta.com/blog/2017/06/21/what-the-heck-is-oauth
+- https://developer.okta.com/blog/2019/01/23/nobody-cares-about-oauth-or-openid-connect - trolly but has good explanations
 
 ### Other implementations
 
-https://github.com/oktadev/okta-express-react-example/blob/master/index.js
+- https://github.com/oktadev/okta-express-react-example/blob/master/index.js
+- https://github.com/sahat/hackathon-starter
